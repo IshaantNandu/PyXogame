@@ -233,8 +233,8 @@ class XO:
         Starts and manages the Tic Tac Toe game.
         """
         print("Welcome to Tic Tac Toe \n Player 1 is X, Player 2 is O")
-        self.chooseMove(False)
         self.chooseMove(True)
+        self.chooseMove(False)
         while self.check():
             self.chooseMove(True)
             if self.check():
@@ -242,3 +242,4 @@ class XO:
 if __name__== "__main__":
     TicTacToe=XO()
     TicTacToe.play()
+
