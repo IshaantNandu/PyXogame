@@ -10,6 +10,7 @@ class XO:
         self.player1='Player 1 (X)'
         self.player2='Player 2 (O)'
         self.iterCount=0
+        self.numOfMoves=0
     def verify(self,array: list,*args,**kwargs):
         """
         Verifies if the given array has a length of 9.
@@ -132,28 +133,28 @@ class XO:
         Returns:
           bool: True if the game is still in progress, False otherwise.
         """
-        draw=True
+
         array=self.numify(self.board)
         if 0 in array:
-            draw==False
+            draw=False
         else:
-            draw==True
+            draw=True
 
         if self.checkRow(array)==1 or self.checkColumn(array)==1 or self.checkDiagonal(array)==1:
             self.win==1
-            print(f'The winner is {self.player1}')
+            print(f'The winner is {self.player1}!')
             self.displayboard()
             sys.exit()
             return False
         elif self.checkRow(array)==2 or self.checkColumn(array)==2 or self.checkDiagonal(array)==2:
             self.win==2
             self.displayboard()
-            print(f'The winner is {self.player2}')
+            print(f'The winner is {self.player2}!')
             sys.exit()
             return False
-        elif draw==False:
+        elif draw==True and self.numOfMoves!=0:
             self.win==0
-            print("The match is a draw")
+            print("The match is a draw.")
             self.displayboard()
             sys.exit()
             return False
@@ -222,6 +223,7 @@ class XO:
             self.iterCount+=1
 
         y-=1
+        self.numOfMoves+=1
         if play:
             self.board[y]='X'
         else:
@@ -233,8 +235,8 @@ class XO:
         Starts and manages the Tic Tac Toe game.
         """
         print("Welcome to Tic Tac Toe \n Player 1 is X, Player 2 is O")
-        self.chooseMove(True)
         self.chooseMove(False)
+        self.chooseMove(True)
         while self.check():
             self.chooseMove(True)
             if self.check():
@@ -242,4 +244,3 @@ class XO:
 if __name__== "__main__":
     TicTacToe=XO()
     TicTacToe.play()
-
